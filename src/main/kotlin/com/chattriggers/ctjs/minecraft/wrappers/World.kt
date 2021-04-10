@@ -3,7 +3,7 @@ package com.chattriggers.ctjs.minecraft.wrappers
 import com.chattriggers.ctjs.minecraft.wrappers.objects.Chunk
 import com.chattriggers.ctjs.minecraft.wrappers.objects.Entity
 import com.chattriggers.ctjs.minecraft.wrappers.objects.Particle
-import com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP
+import com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP
 import com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block
 import com.chattriggers.ctjs.utils.kotlin.BlockPos
 import com.chattriggers.ctjs.utils.kotlin.External
@@ -125,8 +125,8 @@ object World {
      * @return the players
      */
     @JvmStatic
-    fun getAllPlayers(): List<PlayerMP> = getWorld()?.playerEntities?.map {
-        PlayerMP(it)
+    fun getAllPlayers(): List<EntityPlayerMP> = getWorld()?.playerEntities?.map {
+        EntityPlayerMP(it)
     } ?: listOf()
 
     /**
@@ -136,8 +136,8 @@ object World {
      * @return the player with said username, or null if they dont exist.
      */
     @JvmStatic
-    fun getPlayerByName(name: String): PlayerMP? {
-        return getWorld()?.getPlayerEntityByName(name)?.let(::PlayerMP)
+    fun getPlayerByName(name: String): EntityPlayerMP? {
+        return getWorld()?.getPlayerEntityByName(name)?.let(::EntityPlayerMP)
     }
 
     @JvmStatic

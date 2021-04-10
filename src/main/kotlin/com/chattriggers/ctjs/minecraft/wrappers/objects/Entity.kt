@@ -7,13 +7,12 @@ import com.chattriggers.ctjs.utils.kotlin.BlockPos
 import com.chattriggers.ctjs.utils.kotlin.External
 import com.chattriggers.ctjs.utils.kotlin.MCEntity
 import com.chattriggers.ctjs.utils.kotlin.MathHelper
-import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.Vec3
 import net.minecraft.world.World
 import java.util.*
 
 @External
-open class Entity(val entity: MCEntity) {
+open class Entity(open val entity: MCEntity) {
     fun getX() = entity.posX
     fun getY() = entity.posY
     fun getZ() = entity.posZ
@@ -81,26 +80,19 @@ open class Entity(val entity: MCEntity) {
     fun getMotionZ(): Double = this.entity.motionZ
 
     /**
-     * Gets the entity's health, -1 if not a living entity
+     * Gets the entity this entity is currently riding or null if not present.
      *
-     * @return the entity's health
+     * @return the ridden entity
      */
-    fun getHP(): Float {
-        return if (this.entity is EntityLivingBase) {
-            this.entity.health
-        } else -1f
-    }
-
-    fun getMaxHP(): Float {
-        return if (this.entity is EntityLivingBase) {
-            this.entity.maxHealth
-        } else -1f
-    }
-
     fun getRiding(): Entity? {
         return entity.ridingEntity?.let(::Entity)
     }
 
+    /**
+     * Gets the entity that is riding this entity or null if not present.
+     *
+     * @return the entity that is riding this entity
+     */
     fun getRider(): Entity? {
         //#if MC<=10809
         return entity.riddenByEntity?.let(::Entity)
@@ -286,6 +278,11 @@ open class Entity(val entity: MCEntity) {
         entity.isOutsideBorder = outside
     }
 
+    /**
+     * The current world this entity is in, if the entity is not in any world then it defaults to the overworld
+     *
+     * @return this entity's world
+     */
     fun getWorld(): World = entity.entityWorld
 
     override fun toString(): String {

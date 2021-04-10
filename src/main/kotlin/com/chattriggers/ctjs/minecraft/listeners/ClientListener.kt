@@ -3,7 +3,6 @@ package com.chattriggers.ctjs.minecraft.listeners
 import com.chattriggers.ctjs.minecraft.wrappers.Client
 import com.chattriggers.ctjs.minecraft.wrappers.Scoreboard
 import com.chattriggers.ctjs.minecraft.wrappers.World
-import com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP
 import com.chattriggers.ctjs.minecraft.wrappers.objects.block.Block
 import com.chattriggers.ctjs.minecraft.wrappers.objects.block.BlockFace
 import com.chattriggers.ctjs.minecraft.wrappers.objects.inventory.Item
@@ -14,7 +13,6 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelPromise
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.item.ItemStack
 import net.minecraft.network.Packet
 import net.minecraft.util.EnumFacing
@@ -191,9 +189,9 @@ object ClientListener {
 
     @SubscribeEvent
     fun onPickupItem(event: EntityItemPickupEvent) {
-        if (event.entityPlayer !is EntityPlayerMP) return
+        if (event.entityPlayer !is net.minecraft.entity.player.EntityPlayerMP) return
 
-        val player = event.entityPlayer as EntityPlayerMP
+        val player = event.entityPlayer as net.minecraft.entity.player.EntityPlayerMP
 
         val item = event.item
 
@@ -214,7 +212,7 @@ object ClientListener {
             //#else
             //$$ Item(item.item),
             //#endif
-            PlayerMP(player),
+                com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP(player),
             position,
             motion,
             event
@@ -234,13 +232,13 @@ object ClientListener {
     }
 
     fun onDropItem(player: EntityPlayer, item: ItemStack?): Boolean {
-        if (player !is EntityPlayerMP) return false
+        if (player !is net.minecraft.entity.player.EntityPlayerMP) return false
 
         val event = CancellableEvent()
 
         TriggerType.DROP_ITEM.triggerAll(
             Item(item),
-            PlayerMP(player),
+                com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP(player),
             event
         )
 

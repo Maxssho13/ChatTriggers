@@ -5,8 +5,8 @@ import com.chattriggers.ctjs.minecraft.objects.message.TextComponent
 import com.chattriggers.ctjs.minecraft.wrappers.Client
 import com.chattriggers.ctjs.minecraft.wrappers.objects.inventory.Item
 import com.chattriggers.ctjs.utils.kotlin.External
+import com.chattriggers.ctjs.utils.kotlin.MCEntityPlayerMP
 import net.minecraft.client.network.NetworkPlayerInfo
-import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.scoreboard.ScorePlayerTeam
 import net.minecraftforge.fml.relauncher.ReflectionHelper
 
@@ -14,20 +14,15 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper
 //$$ import net.minecraft.inventory.EntityEquipmentSlot;
 //#endif
 
+//TODO: look at getting rid of all the EntityPlayerMP stuff for EntityOtherPlayerMP, maybe just use EntityOtherPlayerMP but name it EntityPlayerMP????
 @External
-class PlayerMP(val player: EntityPlayer) : Entity(player) {
+class EntityPlayerMP(val player: MCEntityPlayerMP) : EntityPlayer(player) {
     val displayNameField = ReflectionHelper.findField(
             EntityPlayer::class.java,
             "displayname"
     )
 
     fun isSpectator() = this.player.isSpectator
-
-    fun getActivePotionEffects(): List<PotionEffect> {
-        return player.activePotionEffects.map {
-            PotionEffect(it)
-        }
-    }
 
     fun getPing(): Int {
         return getPlayerInfo()?.responseTime ?: -1

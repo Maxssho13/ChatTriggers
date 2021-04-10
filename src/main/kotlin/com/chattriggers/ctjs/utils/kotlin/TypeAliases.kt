@@ -2,6 +2,11 @@ package com.chattriggers.ctjs.utils.kotlin
 
 internal typealias MCChunk = net.minecraft.world.chunk.Chunk
 internal typealias MCEntity = net.minecraft.entity.Entity
+internal typealias MCEntityPlayer = net.minecraft.entity.player.EntityPlayer
+internal typealias MCEntityPlayerSP = net.minecraft.client.entity.EntityPlayerSP
+internal typealias MCEntityPlayerMP = net.minecraft.entity.player.EntityPlayerMP // TODO: look at getting rid of all EntityPlayerMP stuff
+internal typealias MCEntityOtherPlayerMP = net.minecraft.client.entity.EntityOtherPlayerMP
+internal typealias MCEntityLivingBase = net.minecraft.entity.EntityLivingBase
 internal typealias MCPotionEffect = net.minecraft.potion.PotionEffect
 internal typealias MCTessellator = net.minecraft.client.renderer.Tessellator
 

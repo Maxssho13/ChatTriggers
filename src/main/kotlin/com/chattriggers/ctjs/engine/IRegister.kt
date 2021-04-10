@@ -1,9 +1,6 @@
 package com.chattriggers.ctjs.engine
 
-import com.chattriggers.ctjs.engine.langs.js.JSLoader
 import com.chattriggers.ctjs.engine.loader.ILoader
-import com.chattriggers.ctjs.engine.module.Module
-import com.chattriggers.ctjs.launch.plugin.CTJSTransformer
 import com.chattriggers.ctjs.minecraft.listeners.ClientListener
 import com.chattriggers.ctjs.minecraft.wrappers.objects.inventory.Item
 import com.chattriggers.ctjs.triggers.*
@@ -571,7 +568,7 @@ interface IRegister {
      * This trigger is asynchronous.
      *
      * Passes through one argument:
-     * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] object
+     * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP] object
      *
      * Available modifications:
      * - [OnTrigger.setPriority] Sets the priority
@@ -607,7 +604,7 @@ interface IRegister {
      *
      * Passes through five arguments:
      * - The [Item] that is picked up
-     * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that picked up the item
+     * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP] that picked up the item
      * - The item's position vector
      * - The item's motion vector
      * - The event, which can be cancelled
@@ -627,7 +624,7 @@ interface IRegister {
      *
      * Passes through five arguments:
      * - The [Item] that is dropped up
-     * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP] that dropped the item
+     * - The [com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP] that dropped the item
      * - The item's position vector
      * - The item's motion vector
      * - The event, which can be cancelled

@@ -4,7 +4,7 @@ import com.chattriggers.ctjs.CTJS
 import com.chattriggers.ctjs.minecraft.libs.Tessellator
 import com.chattriggers.ctjs.minecraft.wrappers.World
 import com.chattriggers.ctjs.minecraft.wrappers.objects.Entity
-import com.chattriggers.ctjs.minecraft.wrappers.objects.PlayerMP
+import com.chattriggers.ctjs.minecraft.wrappers.objects.EntityPlayerMP
 import com.chattriggers.ctjs.triggers.TriggerType
 import net.minecraftforge.client.event.RenderGameOverlayEvent
 import net.minecraftforge.client.event.RenderWorldLastEvent
@@ -146,7 +146,7 @@ object WorldListener {
     fun blockBreak(event: BlockEvent.BreakEvent) {
         TriggerType.BLOCK_BREAK.triggerAll(
             World.getBlockAt(event.pos.x, event.pos.y, event.pos.z),
-            PlayerMP(event.player),
+            EntityPlayerMP(event.player),
             event
         )
     }
@@ -162,7 +162,7 @@ object WorldListener {
     fun attackEntityEvent(event: AttackEntityEvent) {
         TriggerType.ENTITY_DAMAGE.triggerAll(
             Entity(event.target),
-            PlayerMP(event.entityPlayer)
+            EntityPlayerMP(event.entityPlayer)
         )
     }
 }
